@@ -17,7 +17,9 @@ with open("ASIN.txt", "r") as text_file:
         print(asin.rstrip())
         included = False
 
-        with open('PrimeSellers.csv', 'r+', newline='') as asinfile:
+        with open('PrimeSellers.csv', 'a', newline='') as createFile:
+            pass
+        with open('PrimeSellers.csv', 'r', newline='') as asinfile:
             reader = csv.reader(asinfile)
             for row in reader:
                 if asin.rstrip() in row[0]:
