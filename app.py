@@ -20,7 +20,7 @@ with open("ASIN.txt", "r") as text_file:
 
         with open('PrimeSellers.csv', 'a', newline='') as createFile:
             pass
-        with open('PrimeSellers.csv', 'r', newline='') as asinfile:
+        with open('PrimeSellers.csv', 'r', newline='', encoding='utf-8') as asinfile:
             reader = csv.reader(asinfile)
             for row in reader:
                 if asin.rstrip() in row[0]:
@@ -32,10 +32,10 @@ with open("ASIN.txt", "r") as text_file:
             with open("Output.txt", "w", encoding='utf-8') as text_file:
                 text_file.write(str(soup))
 
-            with open("Output.txt", "r") as text_file:
+            with open("Output.txt", "r", encoding='utf-8') as text_file:
                 textParse = BeautifulSoup(text_file, 'html.parser')
 
-                with open('PrimeSellers.csv', 'a+', newline='') as csvfile:
+                with open('PrimeSellers.csv', 'a+', newline='', encoding='utf-8') as csvfile:
                     csvWriter = csv.writer(csvfile)
                     
                     if csvfile.tell() == 0:
