@@ -38,13 +38,15 @@ with open("ASIN.txt", "r") as text_file:
                     csvWriter = csv.writer(csvfile)
                     
                     if csvfile.tell() == 0:
-                        csvWriter.writerow(['Product ASIN', 'Seller Name', 'Prime Status'])
+                        csvWriter.writerow(['Product ASIN', 'Seller Name', 'Prime Status', 'Condition'])
 
                     sName = ''
                     pStatus = ''
+                    qCondition = ''
 
                     for i in textParse.findAll("div", {'class': 'a-row a-spacing-mini olpOffer'}):
                         name = i.find("h3", {'class': 'a-spacing-none olpSellerName'})
+                        qCondition = i.find("div", {'class':'a-section a-spacing-small'}).get_text().strip()
                         if "img" in str(name):
                             # print("Amazon")
                             sName = "Amazon"
@@ -59,9 +61,9 @@ with open("ASIN.txt", "r") as text_file:
                             # print("Not Prime")
                             pStatus = "Not Prime"
                         
-                        print(f'ASIN: {asin.rstrip()}, Seller: {sName}, Prime Status: {pStatus}')
+                        print(f'ASIN: {asin.rstrip()}, Seller: {sName}, Prime Status: {pStatus}, Condition: {qCondition}')
 
-                        csvWriter.writerow([asin.rstrip(), sName, pStatus])
+                        csvWriter.writerow([asin.rstrip(), sName, pStatus, qCondition])
 
                         print('\n')
         else:
