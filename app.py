@@ -30,7 +30,7 @@ with open("ASIN.txt", "r") as text_file:
             url = chrome.open(f"https://www.amazon.com/gp/offer-listing/{asin.rstrip()}")
             soup = BeautifulSoup(url, 'html.parser')
             with open("Output.txt", "w") as text_file:
-                text_file.write(str(soup))
+                text_file.write(str(soup.decode()))
 
             with open("Output.txt", "r") as text_file:
                 textParse = BeautifulSoup(text_file, 'html.parser')
