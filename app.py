@@ -17,7 +17,8 @@ with open("ASIN.txt", "r") as text_file:
     for asin in text_file:
         print(asin.rstrip())
         included = False
-
+        primecounter = 0 
+        namelist = []
         with open('PrimeSellers.csv', 'a', newline='') as createFile:
             pass
         with open('PrimeSellers.csv', 'r', newline='', encoding='utf-8') as asinfile:
@@ -61,12 +62,16 @@ with open("ASIN.txt", "r") as text_file:
                         else:
                             # print("Not Prime")
                             pStatus = "Not Prime"
-                        
-                        print(f'ASIN: {asin.rstrip()}, Seller: {sName}, Prime Status: {pStatus}, Condition: {qCondition}')
+                        if i.find("i", {'class': 'a-icon a-icon-prime'}) and "img" not in str(name) and qCondition == 'New' and name.get_text().strip() not in namelist:
+                            primecounter += 1
+                            namelist.append(name.get_text().strip())
 
+                        #print(f'ASIN: {asin.rstrip()}, Seller: {sName}, Prime Status: {pStatus}, Condition: {qCondition}')
+                        
                         csvWriter.writerow([asin.rstrip(), sName, pStatus, qCondition])
 
-                        print('\n')
+                        # print('\n')
+            print('Prime Sellers: '+ str(primecounter) )                 
         else:
             print(f'ASIN: {asin.rstrip()} already in file.')
 
