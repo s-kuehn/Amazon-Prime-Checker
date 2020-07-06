@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\ikahkonen\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe"
+    "python.pythonPath": "C:\\Users\\ikahkonen\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+    "git.ignoreLimitWarning": true
 }
