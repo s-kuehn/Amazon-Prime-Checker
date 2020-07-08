@@ -65,7 +65,7 @@ with open("ASIN.txt", "r") as text_file:
                             else:
                                 # print("Not Prime")
                                 pStatus = "Not Prime"
-                            if i.find("i", {'class': 'a-icon a-icon-prime'}) and "img" not in str(name) and qCondition == 'New' and name.get_text().strip() not in namelist:
+                            if i.find("i", {'class': 'a-icon a-icon-prime'}) and qCondition == 'New' and name.get_text().strip() not in namelist and name.get_text().strip() != 'paneltown':
                                 primecounter += 1
                                 namelist.append(name.get_text().strip())
 
@@ -112,7 +112,7 @@ with open("ASIN.txt", "r") as text_file:
                                 else:
                                     # print("Not Prime")
                                     pStatus = "Not Prime"
-                                if i.find("i", {'class': 'a-icon a-icon-prime'}) and "img" not in str(name) and qCondition == 'New' and name.get_text().strip() not in namelist:
+                                if i.find("i", {'class': 'a-icon a-icon-prime'}) and qCondition == 'New' and name.get_text().strip() not in namelist and name.get_text().strip() != 'paneltown':
                                     primecounter += 1
                                     namelist.append(name.get_text().strip())
 
@@ -124,7 +124,10 @@ with open("ASIN.txt", "r") as text_file:
                 except:
                     Error_status = True      
             if Error_status == False:
-                print('Prime Sellers: '+ str(primecounter) )
+                if '' in namelist:
+                    print('Prime Sellers: ' + str(primecounter) + ' AMZ')
+                else: 
+                    print('Prime Sellers: '+ str(primecounter))
             else:
                 print("Failed to Load URL")          
         else:
